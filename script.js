@@ -1,5 +1,3 @@
-let allBox = [];
-
 gridGenerator = () => {
   let boxNo = prompt("How many boxes : ");
 
@@ -14,9 +12,19 @@ gridGenerator = () => {
     singleGrid.style.height = boxHeight + "px";
 
     document.getElementById("container").appendChild(singleGrid);
+  }
+  draw();
+};
 
-    allBox[i] = singleGrid;
-    return allBox;
+draw = () => {
+  let allBox = document.getElementsByClassName("box");
+  for (let a = 0; a < allBox.length; a++) {
+    allBox[a].addEventListener(
+      "click",
+      (changeBoxColor = () => {
+        allBox[a].style.background = "black";
+      })
+    );
   }
 };
 
@@ -26,5 +34,3 @@ main = () => {
 };
 
 main();
-
-//gridGenerator();
