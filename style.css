@@ -1,0 +1,24 @@
+
+#container {
+    width: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    background-color: blue;
+    width: 10px;
+    height: 10px;
+}
+
+button {
+    margin: 10px 0;
+    text-align: center;
+}
