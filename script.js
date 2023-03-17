@@ -1,9 +1,8 @@
-gridGenerator = () => {
-  let boxNo = prompt("How many boxes : ");
-
-  let boxWidth = 960 / boxNo;
-  let boxHeight = 960 / boxNo;
-  let totalBox = boxNo * boxNo;
+// generate draw space
+drawingSpace = (boxSize) => {
+  let boxWidth = 960 / boxSize;
+  let boxHeight = 960 / boxSize;
+  let totalBox = boxSize * boxSize;
 
   for (let i = 0; i < totalBox; i++) {
     let singleGrid = document.createElement("div");
@@ -13,24 +12,37 @@ gridGenerator = () => {
 
     document.getElementById("container").appendChild(singleGrid);
   }
-  draw();
 };
 
-draw = () => {
-  let allBox = document.getElementsByClassName("box");
-  for (let a = 0; a < allBox.length; a++) {
-    allBox[a].addEventListener(
-      "click",
-      (changeBoxColor = () => {
-        allBox[a].style.background = "black";
-      })
-    );
+// change color when mouse over boxes
+draw = (color) => {
+  let container = document.getElementById("container");
+  container.addEventListener("mouseover", (e) => {
+    e.target.style.background = color;
+  });
+};
+
+// input box size
+createDrawingSpace = () => {
+  let container = document.getElementById("container");
+  if (container.hasChildNodes()) {
+    let boxNo = prompt("Enter desired box size : ");
+    while (container.hasChildNodes()) {
+      container.removeChild(container.firstChild);
+    }
+    drawingSpace(boxNo);
   }
 };
 
-main = () => {
-  let generateCanvas = document.getElementById("generateCanvas");
-  generateCanvas.addEventListener("click", gridGenerator);
+rainbowColor = () => {
+  draw("blue");
 };
 
-main();
+drawingSpace(16);
+let generateCanvas = document.getElementById("generateCanvas");
+generateCanvas.addEventListener("click", createDrawingSpace);
+
+let rainbowBtn = document.getElementById("rainbow");
+rainbowBtn.addEventListener("click", rainbowColor);
+
+draw("black");
